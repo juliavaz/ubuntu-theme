@@ -1,0 +1,28 @@
+# Evan's minimal prompt
+
+# colors= [091]   [092]   [201]
+
+_collapsed_wd() {
+  echo $(pwd | perl -pe '
+   BEGIN {
+      binmode STDIN,  ":encoding(UTF-8)";
+      binmode STDOUT, ":encoding(UTF-8)";
+   }; s|^$ENV{HOME}|~|g; s|/([^/.])[^/]*(?=/)|/$1|g; s|/\.([^/])[^/]*(?=/)|/.$1|g
+')
+}
+
+PROMPT_SYMBOL1="♥" 
+PROMPT_SYMBOL2="★★" 
+PROMPT_SYMBOL3="~ "
+
+# hh:mm:ss
+PROMPT_SYMBOL_DATE="%*"
+
+PROMPT='%{$FG[091]%}[$PROMPT_SYMBOL_DATE] \
+%{$reset_color%}%{$FG[201]%}$PROMPT_SYMBOL1 \
+%{$FG[091]%}%n%{$reset_color%} \
+%{$FG[201]%}$PROMPT_SYMBOL1 $reset_color% \
+%{$FG[092]%}$PWD \
+%{$FG[201]%}$PROMPT_SYMBOL2\
+
+$PROMPT_SYMBOL3 %{$fg[magenta]%} '
